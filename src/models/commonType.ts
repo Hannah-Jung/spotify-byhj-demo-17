@@ -29,4 +29,5 @@ export interface Owner {
   type?: string,
   uri?: string,
   display_name?: string | null,
+  images?: Image[],
 }
