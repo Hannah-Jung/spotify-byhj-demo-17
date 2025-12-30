@@ -5,6 +5,7 @@ import ErrorMessage from "../../common/components/ErrorMessage"
 import styles from "./PlaylistDetailPage.module.css"
 import { MusicNoteOutlined } from "@mui/icons-material"
 import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile"
+import { Avatar } from "@mui/material"
 
 const PlaylistDetailPage = () => {
   const {id} = useParams<{id:string}>()
@@ -64,15 +65,22 @@ const PlaylistDetailPage = () => {
                 src={userProfile?.images[0].url}
                 alt={userProfile.display_name || "User"}
               />
-            ) : (
-              <div className={styles.ownerImagePlaceholder}>👤</div>
-            )}
+            ) : (              
+                <Avatar 
+                  src={userProfile?.images?.[0]?.url || undefined} 
+                  sx={{ 
+                    width: 24, 
+                    height: 24, 
+                    fontSize: 16,
+                  }}
+                />
+              )}
             <span className={styles.ownerText}>
               {userProfile?.display_name || "User"} {" • "}
               {playlist.tracks?.total || 0}{" "}
               {playlist.tracks?.total === 1 ? "song" : "songs"} {" • "}
               {formatDuration(totalDuration)}
-            </span>
+            </span>            
           </p>
         </div>
       </div>

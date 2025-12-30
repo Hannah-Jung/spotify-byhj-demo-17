@@ -36,7 +36,7 @@ const Playlist = ({ playlists, onPlaylistClick, selectedPlaylistId }: PlaylistPr
             </div>
             <div className={styles.playlistInfo}>
               <h3>{playlist.name}</h3>
-              <p>Playlist<b> · </b>{playlist.owner?.display_name || 'Unknown'}</p>
+              <p>{playlist.tracks?.total || 0} {playlist.tracks?.total === 1 ? 'song' : 'songs'}<b> · </b>{playlist.owner?.display_name || 'Unknown'}</p>
             </div>
           </div>
         );
