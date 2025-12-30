@@ -11,7 +11,7 @@ import type { SimplifiedPlaylist } from '../../models/playlist'
 import { useNavigate } from 'react-router'
 
 const Library = () => {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({rootMargin: '0px 0px 500px 0px', threshold: 0});
   const {data, isLoading, error, fetchNextPage, hasNextPage, isFetchingNextPage} = useGetCurrentUserPlaylists({limit:10, offset:0})
   const {data:user} = useGetCurrentUserProfile()
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const Library = () => {
       {playlists.length === 0 ? (<EmptyPlaylist/>) : (
         <>
           <Playlist playlists={playlists} onPlaylistClick={handlePlaylistClick} selectedPlaylistId={selectedPlaylistId}/>
-          <div ref={ref}>{isFetchingNextPage && <LoadingSpinner/>}</div>      
+          <div ref={ref} style={{ minHeight: '1px' }}>{isFetchingNextPage && <LoadingSpinner/>}</div>      
         </>
       )}      
     </div>    
